@@ -24,6 +24,7 @@ function transformStateWithClones(state, actions) {
         const keys = Array.isArray(action.keysToRemove)
           ? action.keysToRemove
           : [];
+
         for (const key of keys) {
           delete newState[key];
         }
@@ -33,6 +34,9 @@ function transformStateWithClones(state, actions) {
       case 'clear':
         currentState = {};
         break;
+
+      default:
+        throw new Error('Unknown action type');
     }
     stateHistory.push({ ...currentState });
   }
